@@ -4,4 +4,8 @@ module.exports = gql`
 
 
 
+type Query {
+}
+
+# type Mutation {}
 `;
