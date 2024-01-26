@@ -7,9 +7,6 @@ const path = require('path');
 // Uncomment the following code once you have built the queries and mutations in the client folder
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-
-
-
 const PORT = process.env.PORT || 3001;
 const app = express();
 // Uncomment the following code once you have built the queries and mutations in the client folder
@@ -27,9 +24,6 @@ const startApolloServer = async () => {
   
   // Uncomment the following code once you have built the queries and mutations in the client folder
   app.use('/graphql', expressMiddleware(server));
-
-  // Comment out this code once you have built out queries and mutations in the client folder
-  app.use(routes);
 
   // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
