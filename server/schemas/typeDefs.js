@@ -2,27 +2,30 @@ const gql = String.raw;
 
 module.exports = gql`
 
-type Tech {
+type Client {
 	_id: ID
-	name: String
+	firstName: String
+	lastName: String
+	email: String
+	address: String
+	phoneNumber: Int
 }
 
-type Matchup {
+type Account {
 	_id: ID
-	tech1: String
-	tech2: String
-	tech1_votes: Int
-	tech2_votes: Int
+	accountType: String
+	balance: Int
 }
 
 type Query {
-	allTech: [Tech]
-	getAllMatchups: [Matchup]
-	getMatchup(matchupId: ID): Matchup
+	getAllClients: [Client]
+	getClient(clientId: ID): Client
+	getAllAccounts: [Account]
+	getAccount(accountId: ID): Account 
 }
 
 type Mutation {
-	createMatchup(tech1: String, tech2: String): Matchup
-	createVote(matchupId: ID, techNum: Int): Matchup
+	createClient( firstName: String, lastName: String, email: String, address: String, phoneNumber: Int ): Client
+	createAccount( accountType: String, balance: Int ): Account
 }
 `;

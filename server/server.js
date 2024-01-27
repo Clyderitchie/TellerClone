@@ -7,7 +7,7 @@ const path = require('path');
 // Uncomment the following code once you have built the queries and mutations in the client folder
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const app = express();
 // Uncomment the following code once you have built the queries and mutations in the client folder
 const server = new ApolloServer({
