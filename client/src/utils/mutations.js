@@ -1,25 +1,41 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_MATCHUP = gql`
-  mutation createMatchup($tech1: String, $tech2: String) {
-    createMatchup(tech1: $tech1, tech2: $tech2) {
-      _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
-    }
+// Client Mutation
+export const CREATE_CLIENT = gql`
+mutation createClient($firstName: String, $lastName: String, $email: String, $address: String, $phoneNumber: Int) {
+  createClient(firstName: $firstName, lastName: $lastName, email: $email, address: $address, phoneNumber: $phoneNumber) {
+    _id
+    firstName
+    lastName
+    email
+    address
+    phoneNumber
   }
+}
 `;
 
-export const CREATE_VOTE = gql`
-  mutation createVote($matchupId: ID, $techNum: Int) {
-    createVote(matchupId: $matchupId, techNum: $techNum) {
-      _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
-    }
+// Account Mutation
+export const CREATE_ACCOUNT = gql`
+mutation createAccount($accountType: String, $balance: Int) {
+  createAccount(accountType: $accountType, balance: $balance) {
+    _id
+    accountType
+    balance
   }
+}
+`;
+
+// Teller Mutation
+export const CREATE_TELLER = gql`
+mutation createTeller($firstName: String, $lastName: String, $email: String, $username: String, $password: String, $homeBranch: String) {
+  createTeller(firstName: $firstName, lastName: $lastName, email: $email, username: $username, password: $password, homeBranch: $homeBranch) {
+    _id
+    firstName
+    lastName
+    email
+    username
+    password
+    homeBranch
+  }
+}
 `;
