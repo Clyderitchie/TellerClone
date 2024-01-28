@@ -1,4 +1,4 @@
-const { Client, Account } = require('../models');
+const { Client, Account, Teller } = require('../models');
 
 module.exports = {
 	Query: {
@@ -13,6 +13,12 @@ module.exports = {
 		},
 		getAccount: async (_, args) => {
 			return await Account.findById(args.accountId); // Working in sandbox
+		},
+		getAllTellers: async () => {
+			return await Teller.find({}); // Working in sandbox
+		},
+		getTeller: async (_, args) => {
+			return await Teller.findById(args.tellerId); // Working in sandbox
 		}
 	},
 	Mutation: {
@@ -21,6 +27,9 @@ module.exports = {
 		},
 		createAccount: async (_, args) => {
 			return await Account.create(args); // Working in sandbox
+		},
+		createTeller: async (_, args) => {
+			return await Teller.create(args); // Working in sandbox
 		}
 	}
 };
