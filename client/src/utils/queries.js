@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 // Client Query's
-export const QUERY_Client = gql`
+export const QUERY_CLIENT = gql`
 query getClient($clientId: ID) {
   getClient(clientId: $clientId) {
     _id
