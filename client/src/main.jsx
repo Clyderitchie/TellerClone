@@ -5,6 +5,7 @@ import App from './App.jsx';
 import Home from './pages/homepage/Home.jsx';
 import Error from './pages/errorpage/errorPage.jsx';
 import ClientView from './pages/singleClientView/singleclient.jsx';
+import Deposit from './pages/deposit/depositScreen.jsx';
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: '/client', // When I get the search bar working on home page this path will change to /client/:clientId
         element: <ClientView />
       },
+      {
+        path: '/deposit',
+        element: <Deposit />
+      }
     ],
   },
 ]);

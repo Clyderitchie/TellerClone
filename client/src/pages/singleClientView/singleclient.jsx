@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './singleclient.css';
 
 function ClientView() {
@@ -41,6 +42,11 @@ function ClientView() {
                             <p>Date Opened:</p>
                             <p>YTD NSF:</p>
                             <p>Total NSF:</p>
+                        </div>
+                        <div id="deposit">
+                            <Link to="/deposit">
+                                <button className="btn btn-secondary" type="button">Deposit</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
