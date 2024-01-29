@@ -1,0 +1,19 @@
+/* Account */
+#accountInfo {
+    
+    outline: 2px solid blue;
+}
+
+#accountInfoTitle {
+    text-align: center;
+    padding: 1%;
+    border-bottom: 6px solid black;
+}
+
+.accountInfoData {
+    margin-top: 2%;
+    padding: .75%;
+    outline: 2px solid red;
+}
+
+/* Deposits */
