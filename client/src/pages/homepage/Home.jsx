@@ -1,11 +1,26 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_CLIENT, QUERY_TELLER } from '../../utils/queries';
 
 import './homepage.css'
 
 const Home = () => {
-    const { loading, data } = useQuery(QUERY_CLIENT, QUERY_TELLER);
-    const teller = data?.getAllTellers || [];
+    const [searchQuery, setSearchQuery] = useState('');
+    const { loading, data } = useQuery(QUERY_CLIENT, {
+        variables: { clientId: searchQuery},
+    });
+
+    const client = data?.getAllClients || [];
+    const filterClients = client.filter((client) =>
+        client.firstName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+        
+        console.log(filterClients);
+    }
+
 
     if (loading) {
         return <div>Loading...</div>
@@ -25,17 +40,32 @@ const Home = () => {
                 <div className="row">
                     <div className="col-12 mt-5 d-flex justify-content-start">
                         <div className="input-group mb-3">
-                            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
+                            {/* <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button> */}
                             <ul className="dropdown-menu">
                                 <li><a className="dropdown-item" href="#">Name</a></li>
                                 <li><a className="dropdown-item" href="#">Account</a></li>
                                 <li><a className="dropdown-item" href="#">Phone Number</a></li>
                                 <li><a className="dropdown-item" href="#">DC</a></li>
                             </ul>
-                            <input type="text" className="form-control" placeholder="Client Search" aria-label="Text input with dropdown button" />
+                            <input type="text" className="form-control" placeholder="Client Search" aria-label="Text input with dropdown button" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                            <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>Search</button>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Display the filtered clients */}
+            <div className="container mt-5">
+                <h2>Search Results</h2>
+                {filterClients.length > 0 ? (
+                    <ul>
+                        {filterClients.map((client) => (
+                            <li key={client._id}>{client.firstName}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No clients found.</p>
+                )}
             </div>
 
         </>
