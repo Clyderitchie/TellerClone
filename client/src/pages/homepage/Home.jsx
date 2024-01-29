@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_CLIENT, QUERY_TELLER } from '../../utils/queries';
+import { Link } from 'react-router-dom';
 
 import './homepage.css'
 
@@ -48,7 +49,9 @@ const Home = () => {
                                 <li><a className="dropdown-item" href="#">DC</a></li>
                             </ul>
                             <input type="text" className="form-control" placeholder="Client Search" aria-label="Text input with dropdown button" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                            <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>Search</button>
+                           <Link to="/client">
+                           <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>Search</button>
+                           </Link>
                         </div>
                     </div>
                 </div>
