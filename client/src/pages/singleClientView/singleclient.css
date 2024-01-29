@@ -1,34 +1,49 @@
+/* Variables */
+:root {
+--margin-top: 3%;
+--border-style-thick: 6px solid black;
+--border-style-thin: 3px solid black;
+}
+
+/* Personal */
 #personalDrop {
-    margin-top: 2%;
+    margin-top: var(--margin-top);
 }
 
 #personalInfo {
-    margin-top: 3%;
+    margin-top: var(--margin-top);
+    padding: 4% 0 0 0;
 }
 
 #clientName {
     padding: 1%;
-    border-bottom: 6px solid black;
+    border-bottom: var(--border-style-thick);
 }
 
 #info {
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
-    margin-top: 3%;
+    margin-top: var(--margin-top);
+    padding: 2%;
+    border-top: var(--border-style-thin);
+}
+
+/* Account */
+#clientAcccounts {
+    padding: 1%;
+    border-bottom: var(--border-style-thick);
+}
+
+#account {
+    margin-top: var(--margin-top);
 }
 
 #accountDrop {
-    margin-top: 2%;
+    margin-top: var(--margin-top);
+    display: flex;
+    justify-content: space-around;
 }
 
-#accountInfo {
-    margin-top: 3%;
-}
-
-#personalCol {
-    outline: 2px solid red;
-}
-
-#accountCol {
-    outline: 2px solid blue;
+#balance {
+    margin-top: var(--margin-top);
+    padding: 3%;
+    border-top: var(--border-style-thin);
 }
