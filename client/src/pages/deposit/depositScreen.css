@@ -17,3 +17,12 @@
 }
 
 /* Deposits */
+#depositCont {
+    margin-top: 2%;
+    padding: 2%;
+}
+
+#nextStepBtns {
+    display: flex;
+    justify-content: space-between;
+}

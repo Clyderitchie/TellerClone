@@ -1,6 +1,6 @@
 import './depositScreen.css'
 
-function Deposit () {
+function Deposit() {
     return (
         <>
             <div className="container mt-5 border">
@@ -11,7 +11,7 @@ function Deposit () {
                 </div>
                 <div className="row">
                     <div className="col-4">
-                    <div className="accountInfoData">
+                        <div className="accountInfoData">
                             <p>Current Balance:</p>
                             <p>Available Balance:</p>
                             <p>Ledger Balance:</p>
@@ -36,8 +36,24 @@ function Deposit () {
 
             <div className="container mt-3 border">
                 <div className="row">
-                    <div className="col-12">
-                        Deposit section
+                    <div id="depositCont" className="col-6">
+                        <div className="mb-3">
+                            <label for="formGroupExampleInput" className="form-label">Deposit Amount</label>
+                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Deposit Amount" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="formGroupExampleInput2" className="form-label">Currency</label>
+                            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Currency total" />
+                        </div>
+                        <div className="mb-3">
+                            <label for="formGroupExampleInput2" className="form-label">Cash Out</label>
+                            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Cash Out" />
+                        </div>
+                        <div id="nextStepBtns" className="mb-3">
+                            <button className="btn btn-secondary" type="submit">Finish Visit</button>
+                            <button className="btn btn-secondary" type="submit">Next Tran.</button>
+                            <button className="btn btn-secondary" type="submit">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
