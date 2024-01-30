@@ -10,7 +10,7 @@ const Home = () => {
     //     variables: { firstName: searchQuery },
     // });
 
-    const [ getClientByFirstName, { error, loading, data } ] = useLazyQuery(QUERY_CLIENTNAME) 
+    const [getClientByFirstName, { error, loading, data }] = useLazyQuery(QUERY_CLIENTNAME)
 
     const clients = data?.getClientByFirstName || [];
     console.log(clients);
@@ -29,7 +29,7 @@ const Home = () => {
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
-        getClientByFirstName({variables: { firstName: searchQuery }})
+        getClientByFirstName({ variables: { firstName: searchQuery } })
     };
 
     return (
@@ -52,9 +52,9 @@ const Home = () => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
-                                <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>
-                                    Search
-                                </button>
+                            <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>
+                                Search
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -62,18 +62,11 @@ const Home = () => {
             {/* Display the filtered clients */}
             <div className="container mt-5">
                 <h2>Search Results</h2>
-                {clients && clients.map((client) => (
-                    <li key={client._id}>{client.firstName}</li>
-                ))}
-                {/* {filterClients.length > 0 ? (
-                    <ul>
-                        {filterClients.map((client) => (
-                            <li key={client.id}>{client.firstName}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No clients found.</p>
-                )} */}
+                <ul>
+                    {clients && clients.map((client) => (
+                        <li key={client._id}>{client}</li>
+                    ))}
+                </ul>
             </div>
         </>
     );
