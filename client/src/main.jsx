@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/client', // When I get the search bar working on home page this path will change to /client/:clientId
+        path: '/client/:clientId', // When I get the search bar working on home page this path will change to /client/:clientId
         element: <ClientView />
       },
       {
