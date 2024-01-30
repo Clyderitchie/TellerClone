@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './depositScreen.css'
 
 function Deposit() {
@@ -35,7 +37,7 @@ function Deposit() {
             </div>
 
             <div className="container mt-3 border">
-                <div className="row">
+                <div id="depositDisplay" className="row">
                     <div id="depositCont" className="col-6">
                         <div className="mb-3">
                             <label for="formGroupExampleInput" className="form-label">Deposit Amount</label>
@@ -46,13 +48,23 @@ function Deposit() {
                             <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Currency total" />
                         </div>
                         <div className="mb-3">
+                            <label for="formGroupExampleInput2" className="form-label">Check Total</label>
+                            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Cash Out" />
+                        </div>
+                        <div className="mb-3">
                             <label for="formGroupExampleInput2" className="form-label">Cash Out</label>
                             <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Cash Out" />
                         </div>
                         <div id="nextStepBtns" className="mb-3">
-                            <button className="btn btn-secondary" type="submit">Finish Visit</button>
-                            <button className="btn btn-secondary" type="submit">Next Tran.</button>
-                            <button className="btn btn-secondary" type="submit">Cancel</button>
+                            <Link to="/">
+                                <button className="btn btn-secondary" type="submit">Finish Visit</button>
+                            </Link>
+                            <Link to="/client">
+                                <button className="btn btn-secondary" type="submit">Next Tran.</button>
+                            </Link>
+                            <Link to="/client">
+                                <button className="btn btn-secondary" type="submit">Cancel</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

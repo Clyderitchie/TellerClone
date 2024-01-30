@@ -1,7 +1,6 @@
 /* Account */
 #accountInfo {
     
-    outline: 2px solid blue;
 }
 
 #accountInfoTitle {
@@ -13,7 +12,6 @@
 .accountInfoData {
     margin-top: 2%;
     padding: .75%;
-    outline: 2px solid red;
 }
 
 /* Deposits */
@@ -25,4 +23,10 @@
 #nextStepBtns {
     display: flex;
     justify-content: space-between;
+}
+
+#depositDisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
