@@ -12,7 +12,7 @@ export default defineConfig({
       '/graphql': {
       // Comment out the following code once you have built the queries and mutations in the client folder
       // '/api': {
-        target: 'http://localhost:3001',
+        target: 'http://localhost:3002',
         changeOrigin: true,
         secure: false,
       },

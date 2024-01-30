@@ -1,32 +1,36 @@
 import { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_CLIENT } from '../../utils/queries';
+import { useLazyQuery } from '@apollo/client';
+import { QUERY_CLIENTNAME } from '../../utils/queries';
 import { Link } from 'react-router-dom';
 import './homepage.css';
 
 const Home = () => {
-    const [searchQuery, setSearchQuery] = useState([]);
-    const { loading, data } = useQuery(QUERY_CLIENT, {
-        variables: { firstName: searchQuery },
-    });
+    const [searchQuery, setSearchQuery] = useState('');
+    // const { loading, data } = useLazyQuery(QUERY_CLIENTNAME, {
+    //     variables: { firstName: searchQuery },
+    // });
 
-    const client = data?.client || [];
+    const [ getClientByFirstName, { error, loading, data } ] = useLazyQuery(QUERY_CLIENTNAME) 
+
+    const clients = data?.getClientByFirstName || [];
+    console.log(clients);
 
     useEffect(() => {
-        console.log(client);
-    }, [client]);
-
-    const filterClients = client.filter((client) =>
-        client.firstName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const handleSearch = (event) => {
-        setSearchQuery(event.target.value);
-    };
+        console.log(clients);
+    }, [clients]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
+
+    // const filterClients = [clients].filter((client) =>
+    //     client.firstName.includes(searchQuery)
+    // );
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+        getClientByFirstName({variables: { firstName: searchQuery }})
+    };
 
     return (
         <>
@@ -37,55 +41,31 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
             <div id="customerSearch" className="container border">
                 <div className="row">
                     <div className="col-12 mt-5 d-flex justify-content-start">
                         <div className="input-group mb-3">
-                            <ul className="dropdown-menu">
-                                <li>
-                                    <a className="dropdown-item" href="#">
-                                        Name
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#">
-                                        Account
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#">
-                                        Phone Number
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#">
-                                        DC
-                                    </a>
-                                </li>
-                            </ul>
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Client Search"
-                                aria-label="Text input with dropdown button"
                                 value={searchQuery}
-                                onChange={handleSearch}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
-                            <Link to={`/client/${searchQuery}`}>
-                                <button className="btn btn-outline-secondary" type="submit">
+                                <button className="btn btn-outline-secondary" type="submit" onClick={handleSearch}>
                                     Search
                                 </button>
-                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
-
             {/* Display the filtered clients */}
             <div className="container mt-5">
                 <h2>Search Results</h2>
-                {filterClients.length > 0 ? (
+                {clients && clients.map((client) => (
+                    <li key={client._id}>{client.firstName}</li>
+                ))}
+                {/* {filterClients.length > 0 ? (
                     <ul>
                         {filterClients.map((client) => (
                             <li key={client.id}>{client.firstName}</li>
@@ -93,7 +73,7 @@ const Home = () => {
                     </ul>
                 ) : (
                     <p>No clients found.</p>
-                )}
+                )} */}
             </div>
         </>
     );

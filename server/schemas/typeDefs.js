@@ -29,6 +29,7 @@ type Teller {
 
 type Query {
 	getAllClients: [Client]
+	getClientByFirstName(firstName: String): [Client]
 	getClient(clientId: ID): Client
 	getAllAccounts: [Account]
 	getAccount(accountId: ID): Account

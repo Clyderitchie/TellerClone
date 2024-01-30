@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 // Client Query's
 export const QUERY_CLIENT = gql`
-query getClient($clientId: ID) {
+query Query($clientId: ID) {
   getClient(clientId: $clientId) {
     _id
     firstName
@@ -26,6 +26,19 @@ export const QUERY_CLIENTS = gql`
   }
 }
 `;
+
+export const QUERY_CLIENTNAME = gql`
+query getClientByFirstName($firstName: String) {
+  getClientByFirstName(firstName: $firstName) {
+    _id
+    firstName
+    lastName
+    email
+    address
+    phoneNumber
+  }
+}
+`
 
 // Account Query's 
 export const QUERY_ACCOUNT = gql`

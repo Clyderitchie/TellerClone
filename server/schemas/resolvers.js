@@ -8,6 +8,9 @@ module.exports = {
 		getClient: async (_, args) => {
 			return await Client.findById(args.clientId); // Working in sandbox
 		},
+		getClientByFirstName: async (_, args) => {
+			return await Client.find({firstName: args.firstName});
+		},
 		getAllAccounts: async () => {
 			return await Account.find({}); // Working in sandbox
 		},
