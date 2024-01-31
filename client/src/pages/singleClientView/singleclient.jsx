@@ -1,21 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import {  QUERY_CLIENT } from '../../utils/queries'
+
+
 import './singleclient.css';
 
 function ClientView() {
+    const { clientId: _id } = useParams();
 
+    const { loading, error, data } = useQuery( QUERY_CLIENT, {
+        variables: { clientId: _id },
+    });
+
+    const client = data?.getClient || [];
+    console.log(client);
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
 
     return (
         <>
             <div className="container mt-5 border">
                 <div className="row">
                     <div id="personalCol" className="col-6">
-                        <h1 id="clientName">Name: (Client name here)</h1>
+                        <h1 id="clientName">Name: {client.firstName} {client.lastName}</h1>
                         <div id="personalInfo">
                             <h3>Personal Info</h3>
                             <div id="info">
-                                <p>Address:</p>
-                                <p>Email:</p>
-                                <p>Phone Number:</p>
+                                <p>Address: {client.address}</p>
+                                <p>Email: {client.email}</p>
+                                <p>Phone Number: {client.phoneNumber}</p>
                                 <p>SSN:</p>
                                 <p>ID:</p>
                             </div>
