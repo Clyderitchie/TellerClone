@@ -16,6 +16,7 @@ const AccountSchema = new Schema(
         },
         clientId: {
             type: Schema.Types.ObjectId,
+            ref: 'Client',
             require: true
         },
     },

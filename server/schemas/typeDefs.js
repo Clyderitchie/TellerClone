@@ -9,12 +9,14 @@ type Client {
 	email: String
 	address: String
 	phoneNumber: Int
+	accounts: [Account]
 }
 
 type Account {
 	_id: ID
 	accountType: String
 	balance: Int
+	clientId: Client
 }
 
 type Teller {
@@ -39,7 +41,7 @@ type Query {
 
 type Mutation {
 	createClient( firstName: String, lastName: String, email: String, address: String, phoneNumber: Int ): Client
-	createAccount( accountType: String, balance: Int ): Account
+	createAccount( accountType: String, balance: Int, clientId: ID!): Account
 	createTeller( firstName: String, lastName: String, email: String, username: String, password: String, homeBranch: String ): Teller
 }
 `;

@@ -16,11 +16,19 @@ mutation createClient($firstName: String, $lastName: String, $email: String, $ad
 
 // Account Mutation
 export const CREATE_ACCOUNT = gql`
-mutation createAccount($accountType: String, $balance: Int) {
-  createAccount(accountType: $accountType, balance: $balance) {
+mutation Mutation($accountType: String, $balance: Int, $clientId: ID!) {
+  createAccount(accountType: $accountType, balance: $balance, clientId: $clientId) {
     _id
     accountType
     balance
+    clientId {
+      _id
+      firstName
+      lastName
+      email
+      address
+      phoneNumber
+    }
   }
 }
 `;

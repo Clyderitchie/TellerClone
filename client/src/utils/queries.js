@@ -10,6 +10,11 @@ query Query($clientId: ID) {
     email
     address
     phoneNumber
+    accounts {
+      _id
+      accountType
+      balance
+    }
   }
 }
 `;
@@ -42,21 +47,32 @@ query getClientByFirstName($firstName: String) {
 
 // Account Query's 
 export const QUERY_ACCOUNT = gql`
- query getAccount($accountId: ID) {
+query Query($accountId: ID) {
   getAccount(accountId: $accountId) {
     _id
     accountType
     balance
+    clientId {
+      _id
+      firstName
+      lastName
+      email
+      address
+      phoneNumber
+    }
   }
 }
-`;
+`
 
 export const QUERY_ACCOUNTS = gql`
-  query getAllAccounts {
+ query AllAccounts {
   getAllAccounts {
     _id
     accountType
     balance
+    clientId {
+      _id
+    }
   }
 }
 `;

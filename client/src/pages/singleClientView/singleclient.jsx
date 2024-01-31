@@ -37,7 +37,9 @@ function ClientView() {
                         </div>
                     </div>
                     <div id="accountCol" className="col-6">
-                        <h1 id="clientAcccounts">Account Info</h1>
+                        <h1 id="clientAcccounts">Account Info: {client.accounts.map((account) => (
+                            <h2 kwy={account._id}>{account.accountType}</h2>
+                        ))}</h1>
                         <div id="accountDrop" className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accounts
