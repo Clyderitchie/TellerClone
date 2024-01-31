@@ -26,20 +26,18 @@ function ClientView() {
                     <div id="personalCol" className="col-6">
                         <h1 id="clientName">Name: {client.firstName} {client.lastName}</h1>
                         <div id="personalInfo">
-                            <h3>Personal Info</h3>
+                            <h3 id="personalInfoTitle">Personal Info</h3>
                             <div id="info">
-                                <p>Address: {client.address}</p>
-                                <p>Email: {client.email}</p>
-                                <p>Phone Number: {client.phoneNumber}</p>
-                                <p>SSN:</p>
-                                <p>ID:</p>
+                                <p className='personalData'>Address: {client.address}</p>
+                                <p className='personalData'>Email: {client.email}</p>
+                                <p className='personalData'>Phone Number: {client.phoneNumber}</p>
+                                <p className='personalData'>SSN:</p>
+                                <p className='personalData'>ID:</p>
                             </div>
                         </div>
                     </div>
                     <div id="accountCol" className="col-6">
-                        <h1 id="clientAcccounts">Account Info: {client.accounts.map((account) => (
-                            <h2 kwy={account._id}>{account.accountType}</h2>
-                        ))}</h1>
+                        <h1 id="clientAcccounts">Account Info:</h1>
                         <div id="accountDrop" className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accounts
@@ -50,18 +48,21 @@ function ClientView() {
                                 <li><a className="dropdown-item" href="#">Money Market</a></li>
                                 <li><a className="dropdown-item" href="#">CD</a></li>
                             </ul>
-                            <h3 id="account">(Account name and number here)</h3>
+                            <h3 id="account">{client.accounts.map((account) => (
+                            <p key={account._id}>{account.accountType}</p>
+                        ))}</h3>
                         </div>
-                        <div id="balance">
-                            <p>Current Balance:</p>
-                            <p>Available Balance:</p>
-                            <p>Ledger Balance:</p>
-                            <p>Date Opened:</p>
-                            <p>YTD NSF:</p>
-                            <p>Total NSF:</p>
+                        <div id="balance">{client.accounts.map((account) => (
+                            <p className="accountBalance" key={account._id}>Current Balance: {account.balance}</p>
+                        ))}
+                            <p className="accountBalance">Available Balance:</p>
+                            <p className="accountBalance">Ledger Balance:</p>
+                            <p className="accountBalance">Date Opened:</p>
+                            <p className="accountBalance">YTD NSF:</p>
+                            <p className="accountBalance">Total NSF:</p>
                         </div>
                         <div id="deposit">
-                            <Link to="/deposit">
+                            <Link to={`/deposit/${client._id}`}>
                                 <button className="btn btn-secondary" type="button">Deposit</button>
                             </Link>
                         </div>

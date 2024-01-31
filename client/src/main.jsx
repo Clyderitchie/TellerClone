@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <ClientView />
       },
       {
-        path: '/deposit',
+        path: '/deposit/:clientId',
         element: <Deposit />
       }
     ],
