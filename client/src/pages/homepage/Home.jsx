@@ -6,26 +6,14 @@ import './homepage.css';
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    // const { loading, data } = useLazyQuery(QUERY_CLIENTNAME, {
-    //     variables: { firstName: searchQuery },
-    // });
-
     const [getClientByFirstName, { error, loading, data }] = useLazyQuery(QUERY_CLIENTNAME)
-
     const clients = data?.getClientByFirstName || [];
     console.log(clients);
-
-    useEffect(() => {
-        console.log(clients);
-    }, [clients]);
+    useEffect(() => { }, [clients]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
-
-    // const filterClients = [clients].filter((client) =>
-    //     client.firstName.includes(searchQuery)
-    // );
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
@@ -60,13 +48,25 @@ const Home = () => {
                 </div>
             </div>
             {/* Display the filtered clients */}
-            <div className="container mt-5">
-                <h2>Search Results</h2>
-                <ul>
+            <div id="searchResultCont" className="container mt-5 border">
+                <h2 id="resultTitle" >Search Results</h2>
                     {clients && clients.map((client) => (
-                        <li key={client._id}>{client}</li>
+                <Link id="clientReturn" to={`/client/${client._id}`}>
+                        <li key={client._id}>
+                            Name: {client.firstName} {client.lastName}
+                            <div id="clientInfoDropBtn" className="btn-group">
+                                <button id="dropdownList" className="btn btn-secondary btn-sm dropdown-toggle vw-75" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                   Client Info
+                                </button>
+                                <ul className="dropdown-menu">
+                                   <li>Address: {client.address}</li>
+                                   <li>Phone Number: {client.phoneNumber}</li>
+                                </ul>
+                            </div>
+                        </li>
+
+                </Link>
                     ))}
-                </ul>
             </div>
         </>
     );

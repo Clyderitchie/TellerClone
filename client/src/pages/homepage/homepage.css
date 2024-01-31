@@ -5,3 +5,28 @@
 #customerSearch {
     margin-top: 3%;
 }
+
+#searchResultCont {
+    margin-top: 3%;
+    padding: 2%;
+}
+
+#resultTitle {
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 1.5%;
+}
+
+#clientReturn {
+    text-decoration: none;
+    font-size: larger;
+    color: black;
+}
+
+#clientInfoDropBtn {
+    margin-left: 1%;
+}
+
+#dropdownList {
+    width: 25%;
+}
